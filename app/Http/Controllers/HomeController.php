@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function import_txt()
     {
         // limpia la tabla registros
-        DB::table('actasplenos')->truncate();
+        // DB::table('actasplenos')->truncate();
         DB::table('actascomis')->truncate();
 
         /********************************************************
