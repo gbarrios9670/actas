@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function import_txt()
     {
         // limpia la tabla registros
-        // DB::table('actasplenos')->truncate();
+        DB::table('actasplenos')->truncate();
         DB::table('actascomis')->truncate();
 
         /********************************************************
@@ -39,17 +39,17 @@ class HomeController extends Controller
         $input = file(storage_path('ACT_PLEN.txt'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
         $filedata= array();
-        foreach ($input as $line) {
+        foreach ($input as $key => $line) {
             // $filedata[] = explode("\t",$line);
             $filedata[] = str_replace("|", "", explode("\t",$line)) ;
-            // dd($filedata[0][0]);
+            // var_dump($filedata[$key][0]);
             
              $pleno = new Actaspleno;
 
-             $pleno->anno = $filedata[0][0];
-             $pleno->mes = Self::getMonthName($filedata[0][1]);
-             $pleno->acta = $filedata[0][2];
-             $pleno->dire_web = $filedata[0][3];
+             $pleno->anno = $filedata[$key][0];
+             $pleno->mes = Self::getMonthName($filedata[$key][1]);
+             $pleno->acta = $filedata[$key][2];
+             $pleno->dire_web = $filedata[$key][3];
 
              $pleno->save();
         }
@@ -60,25 +60,26 @@ class HomeController extends Controller
         $input = file(storage_path('ACT_COMI.txt'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
         $filedata= array();
-        foreach ($input as $line) {
+        foreach ($input as $key => $line) {
             // $filedata[] = explode("\t",$line);
-            $filedata[] = str_replace("|", "", explode("\t",$line)) ;
-            // dd($filedata[0][0]);
+            $filedata[$key] = str_replace("|", "", explode("\t",$line)) ;
+            // dd($filedata[$key]);
             
-             $comis = new Actascomi;
+            $comis = new Actascomi;
 
-             $comis->anno = $filedata[0][0];
-             $comis->mes = Self::getMonthName($filedata[0][1]);
-             $comis->comision = Self::getComisionName($filedata[0][3]);
-             $comis->dire_web = $filedata[0][4];
-
+             $comis->anno = $filedata[$key][0];
+             $comis->mes = Self::getMonthName($filedata[$key][1]);
+             $comis->comision = Self::getComisionName($filedata[$key][3]);
+             $comis->dire_web = $filedata[$key][4];
+             $comis->acta = "";
+            
              $comis->save();
         }
 
         return "Datos cargados con éxito...";     
     }
 
-
+    
     /**
      * Show the application dashboard.
      *

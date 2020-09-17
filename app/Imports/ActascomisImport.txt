@@ -1,11 +1,13 @@
+EJEMPLO UTILIZANDO https://laravel-excel.com/
+
 <?php
 
 namespace App\Imports;
 
-use App\Actaspleno;
+use App\Actascomi;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class ActasplenoImport implements ToModel
+class ActascomisImport implements ToModel
 {
     /**
     * @param array $row
@@ -14,11 +16,12 @@ class ActasplenoImport implements ToModel
     */
     public function model(array $row)
     {
-        return new Actaspleno([
+        return new Actascomi([
             'anno'          => $row[0], 
             'mes'           => $row[1],
             'acta'          => $row[2],
-            'dire_web'      => $row[3], 
+            'comision'      => $row[3], 
+            'dire_web'      => $row[4], 
         ]);
     }
 }
