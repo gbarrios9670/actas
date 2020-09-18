@@ -44,14 +44,14 @@ class HomeController extends Controller
             $filedata[] = str_replace("|", "", explode("\t",$line)) ;
             // var_dump($filedata[$key][0]);
             
-             $pleno = new Actaspleno;
+            $pleno = new Actaspleno;
 
-             $pleno->anno = $filedata[$key][0];
-             $pleno->mes = Self::getMonthName($filedata[$key][1]);
-             $pleno->acta = $filedata[$key][2];
-             $pleno->dire_web = $filedata[$key][3];
+            $pleno->anno = $filedata[$key][0];
+            $pleno->mes = Self::getMonthName($filedata[$key][1]);
+            $pleno->acta = $filedata[$key][2];
+            $pleno->dire_web = $filedata[$key][3];
 
-             $pleno->save();
+            $pleno->save();
         }
     
         /************************************************************
@@ -67,13 +67,13 @@ class HomeController extends Controller
             
             $comis = new Actascomi;
 
-             $comis->anno = $filedata[$key][0];
-             $comis->mes = Self::getMonthName($filedata[$key][1]);
-             $comis->comision = Self::getComisionName($filedata[$key][3]);
-             $comis->dire_web = $filedata[$key][4];
-             $comis->acta = "";
+            $comis->anno = $filedata[$key][0];
+            $comis->mes = Self::getMonthName($filedata[$key][1]);
+            $comis->dia = Self::getDay($filedata[$key][2]);
+            $comis->comision = Self::getComisionName($filedata[$key][3]);
+            $comis->dire_web = $filedata[$key][4];
             
-             $comis->save();
+            $comis->save();
         }
 
         return "Datos cargados con éxito...";     
@@ -235,6 +235,20 @@ class HomeController extends Controller
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         return $meses[intval($numero) - 1];
     }
+
+
+   /*************************************************************************************
+     * determina el nombre del mes a partir de un numero entero
+     ************************************************************************************/
+    public function getDay($pdfName)
+    {
+        // |1993_09_13_A_COMI_JUSTICIA.PDF|
+        
+        $dia = "$pdfName[8]$pdfName[9]";
+        // $dia = intval($dia);
+        return $dia;
+    }
+
 
    /*************************************************************************************
      * determina el nombre del mes a partir de un numero entero

@@ -26,8 +26,9 @@
       <table id="example" class="display table mt-1 compact">
         <thead class="thead-dark">
             <tr>
-                <th col width="100px">Año</th>
-                <th col width="100px">Mes</th>
+                <th col width="60px">Año</th>
+                <th col width="60px">Mes</th>
+                <th col width="55px">Día</th>
                 <th>Comisión</th>
                 <th width="25px">Accion</th>
             </tr>
@@ -36,6 +37,7 @@
             <tr>
                 <th>Año</th>
                 <th>Mes</th>
+                <th>Día</th>
                 <th>Comisión</th>
                 <th hidden></th>
             </tr>
@@ -57,7 +59,7 @@
           // Setup - add a text input to each footer cell
           $('#example tfoot th').each( function () {
               var title = $(this).text();
-              $(this).html( '<input type="text" placeholder="Filtrar por '+title+'" />' );
+              $(this).html( '<input type="text" placeholder="Filtrar '+title+'" />' );
           } );
       
           // DataTable
@@ -68,6 +70,7 @@
                 "columns": [
                     {data: 'anno'},
                     {data: 'mes'},
+                    {data: 'dia'},
                     {data: 'comision'},
                     {data: 'btn', orderable: false, searchable: false}
                 ],

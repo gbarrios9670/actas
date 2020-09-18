@@ -17,7 +17,7 @@ class CreateActascomisTable extends Migration
             $table->increments('id');
             $table->string('anno');
             $table->string('mes');
-            $table->string('acta');
+            $table->string('dia');
             $table->string('comision');
             $table->string('dire_web');
             $table->timestamps();
