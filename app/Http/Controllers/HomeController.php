@@ -208,7 +208,7 @@ class HomeController extends Controller
         $dire_web = substr($dato->dire_web, 2);     //elimina los dos primeros puntos
         $dire_web = str_replace(".PDF", ".pdf", $dire_web);    //cambia de mayuscula a minuscula la extension del pdf
         
-        return redirect()->away("https://asamblea.gob.pa".$dire_web);
+        return redirect()->away("https://www.asamblea.gob.pa".$dire_web);
     }
 
 
