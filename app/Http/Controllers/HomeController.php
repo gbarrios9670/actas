@@ -29,6 +29,7 @@ class HomeController extends Controller
      */
     public function import_txt()
     {
+      
         // limpia la tabla registros
         DB::table('actasplenos')->truncate();
         DB::table('actascomis')->truncate();
@@ -50,6 +51,7 @@ class HomeController extends Controller
             $pleno->mes = Self::getMonthName($filedata[$key][1]);
             $pleno->acta = $filedata[$key][2];
             $pleno->dire_web = $filedata[$key][3];
+            $pleno->pdf_existe = self::existe_ftp_pdf($filedata[$key][3]);
 
             $pleno->save();
         }
@@ -72,7 +74,8 @@ class HomeController extends Controller
             $comis->dia = Self::getDay($filedata[$key][2]);
             $comis->comision = Self::getComisionName($filedata[$key][3]);
             $comis->dire_web = $filedata[$key][4];
-            
+            $comis->pdf_existe = self::existe_ftp_pdf($filedata[$key][3]);
+
             $comis->save();
         }
 
@@ -226,6 +229,19 @@ class HomeController extends Controller
         return false;
     }
 
+    /*************************************************************************************
+     * determina si el pdf existe en el servidor ftp
+     ************************************************************************************/
+    public function existe_ftp_pdf($filepath)
+    {
+
+        $existe = Storage::disk('ftp')->exists("$filepath");
+
+        if ($existe) {
+            return true;
+        }
+        return false;
+    }
 
    /*************************************************************************************
      * determina el nombre del mes a partir de un numero entero

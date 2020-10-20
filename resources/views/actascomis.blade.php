@@ -4,11 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Actas de comisiones</title>
 
-    <!-- Bootstrap CSS -->
-    {{--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">  --}}
-    
+    <!-- Bootstrap, datatables CSS -->    
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dataTables.min.css') }}">
 
@@ -17,24 +15,39 @@
           width: 100%;
           padding: 3px;
           box-sizing: border-box;
-    }
+        }
+        
+        .bottom-left {
+        position: absolute;
+        bottom: -20px;
+        left: 16px;
+        }
     </style>
-
-    <title>Actas de Comisiones</title>
   </head>
+
   <body>
+    <div class="mb-1" style="background-image: url('/images/background-menu.png'); height: 130px;">
+        <div class='container'>
+            <div class="row">
+                <div class="col">
+                    <div class="bottom-left"><strong><p class="text-white">ACTAS DE COMISIONES</p></strong></div>
+                </div>
+                <div class="col">
+                    <img src="{{url('/images/logoasamblea.png')}}" class="rounded float-right mt-3 mr-1" alt="Logo asamblea" height="100px">
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
     <div class='container'>
-      <div class="alert alert-success mt-2" role="alert">
-            <strong>ACTAS DE COMISIONES</strong>
-      </div>
-      <table id="example" class="display table mt-1 compact">
+      <table id="example" class="table data-table hover compact order-column mt-1">
         <thead class="thead-dark">
             <tr>
                 <th col width="60px">Año</th>
                 <th col width="60px">Mes</th>
-                <th col width="55px">Día</th>
+                <th col width="60px">Día</th>
                 <th>Comisión</th>
-                <th width="25px">Accion</th>
+                <th class="text-center" width="20px">Acción</th>
             </tr>
         </thead>
         <tfoot>
@@ -48,14 +61,6 @@
         </tfoot>
       </table>
     </div>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    {{--  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>  --}}
 
     <script src="{{ asset('js/jquery-3.5.1.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -82,6 +87,21 @@
                     {data: 'comision'},
                     {data: 'btn', orderable: false, searchable: false}
                 ],
+                columnDefs: [
+                    {
+                        targets: 0,
+                        className: 'dt-center'
+                    },
+                    {
+                        targets: 2,
+                        className: 'dt-center'
+                    },
+                    {
+                        targets: -1,
+                        className: 'dt-center'
+                    }
+                ],
+                
                 "language": {
                     "decimal":        "",
                     "emptyTable":     "No hay datos disponibles para esta tabla",
