@@ -41,7 +41,7 @@
         </div>
     </div>
     </div>
-    
+
     <div class='container'>
       <table id="example" class="table data-table hover compact order-column mt-1">
         <thead class="thead-dark">

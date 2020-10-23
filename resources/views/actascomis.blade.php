@@ -26,19 +26,22 @@
   </head>
 
   <body>
-    <div class="mb-1" style="background-image: url('/images/background-menu.png'); height: 130px;">
+    <div class="container-fluid">
+    <div class="mb-1" style="background-image: url('/images/background-menu.png');">
         <div class='container'>
             <div class="row">
                 <div class="col">
-                    <div class="bottom-left"><strong><p class="text-white">ACTAS DE COMISIONES</p></strong></div>
+                    <div class="bottom-left mb-1"><strong><p class="text-white">ACTAS DE COMISIONES</p></strong></div>
                 </div>
                 <div class="col">
-                    <img src="{{url('/images/logoasamblea.png')}}" class="float-right mt-3 mr-1" alt="Logo asamblea" height="100px">
+                    <img src="{{url('/images/logoasamblea.png')}}" class="float-right my-2 mr-1" alt="Logo asamblea" height="70px">
                 </div>
               </div>
             </div>
         </div>
     </div>
+    </div>
+    
     <div class='container'>
       <table id="example" class="table data-table hover compact order-column mt-1">
         <thead class="thead-dark">
