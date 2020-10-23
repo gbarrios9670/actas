@@ -37,13 +37,13 @@ class HomeController extends Controller
         /********************************************************
          * Carga los datos de actas del pleno desde archivo txt
         ********************************************************/
-        $input = file(storage_path('ACT_PLEN.txt'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $input = file(storage_path('ACT_PLEN.TXT'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
         $filedata= array();
         foreach ($input as $key => $line) {
             // $filedata[] = explode("\t",$line);
             $filedata[] = str_replace("|", "", explode("\t",$line)) ;
-            // var_dump($filedata[$key][0]);
+            // var_dump($filedata[$key][3]);
             
             $pleno = new Actaspleno;
 
@@ -51,15 +51,15 @@ class HomeController extends Controller
             $pleno->mes = Self::getMonthName($filedata[$key][1]);
             $pleno->acta = $filedata[$key][2];
             $pleno->dire_web = $filedata[$key][3];
-            $pleno->pdf_existe = self::existe_ftp_pdf($filedata[$key][3]);
-
+            // $pleno->pdf_existe = self::existe_ftp_pdf($filedata[$key][3]);
+            // dd($pleno->pdf_existe);
             $pleno->save();
         }
-    
+
         /************************************************************
          * Carga los datos de actas de comisiones desde archivo txt
         ************************************************************/
-        $input = file(storage_path('ACT_COMI.txt'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $input = file(storage_path('ACT_COMI.TXT'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
         $filedata= array();
         foreach ($input as $key => $line) {
@@ -74,7 +74,7 @@ class HomeController extends Controller
             $comis->dia = Self::getDay($filedata[$key][2]);
             $comis->comision = Self::getComisionName($filedata[$key][3]);
             $comis->dire_web = $filedata[$key][4];
-            $comis->pdf_existe = self::existe_ftp_pdf($filedata[$key][3]);
+            // $comis->pdf_existe = self::existe_ftp_pdf($filedata[$key][3]);
 
             $comis->save();
         }
@@ -234,9 +234,14 @@ class HomeController extends Controller
      ************************************************************************************/
     public function existe_ftp_pdf($filepath)
     {
-
-        $existe = Storage::disk('ftp')->exists("$filepath");
-
+        // modifica la direccion contenida en la columna dire_web
+        $dire_web = substr($filepath, 2);     //elimina los dos primeros puntos
+        $dire_web = str_replace(".PDF", ".pdf", $dire_web);    //cambia de mayuscula a minuscula la extension del pdf
+        
+        $existe = Storage::disk('ftp')->exists("$dire_web");
+        
+        // dd($existe);
+        
         if ($existe) {
             return true;
         }

@@ -36,4 +36,4 @@ Route::get('/actas_comisiones', function() {
 Route::get('ver_pdf/{path}', 'HomeController@ver_pdf')->name('ver_pdf');
 Route::get('showAsambleaPdf/{path},{comi_pleno}', 'HomeController@showAsambleaPdf')->name('showAsambleaPdf');
 
-Route::get('/import_txt', 'HomeController@import_txt');
+Route::get('/importar_txt', 'HomeController@import_txt');

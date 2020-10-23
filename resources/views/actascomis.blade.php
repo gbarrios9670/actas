@@ -33,7 +33,7 @@
                     <div class="bottom-left"><strong><p class="text-white">ACTAS DE COMISIONES</p></strong></div>
                 </div>
                 <div class="col">
-                    <img src="{{url('/images/logoasamblea.png')}}" class="rounded float-right mt-3 mr-1" alt="Logo asamblea" height="100px">
+                    <img src="{{url('/images/logoasamblea.png')}}" class="float-right mt-3 mr-1" alt="Logo asamblea" height="100px">
                 </div>
               </div>
             </div>
@@ -77,6 +77,7 @@
       
           // DataTable
           var table = $('#example').DataTable({
+                "responsive": true,
                 "serverSide": true,
                 "order": [[ 0, "desc" ]],
                 "ajax": "{{ url('api/actas_comisiones') }}",
