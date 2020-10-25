@@ -31,6 +31,6 @@ class CreateActascomisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pdfs');
+        Schema::dropIfExists('actascomis');
     }
 }
