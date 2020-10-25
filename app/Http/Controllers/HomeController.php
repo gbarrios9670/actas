@@ -53,6 +53,7 @@ class HomeController extends Controller
             $pleno->dire_web = $filedata[$key][3];
             // $pleno->pdf_existe = self::existe_ftp_pdf($filedata[$key][3]);
             // dd($pleno->pdf_existe);
+            
             $pleno->save();
         }
 
@@ -64,7 +65,7 @@ class HomeController extends Controller
         $filedata= array();
         foreach ($input as $key => $line) {
             // $filedata[] = explode("\t",$line);
-            $filedata[$key] = str_replace("|", "", explode("\t",$line)) ;
+            $filedata[] = str_replace("|", "", explode("\t",$line)) ;
             // dd($filedata[$key]);
             
             $comis = new Actascomi;
