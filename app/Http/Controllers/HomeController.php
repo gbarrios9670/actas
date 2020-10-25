@@ -37,12 +37,12 @@ class HomeController extends Controller
         /********************************************************
          * Carga los datos de actas del pleno desde archivo txt
         ********************************************************/
-        $input = file(storage_path('ACT_PLEN.txt'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $input = file(storage_path('ACT_PLEN.TXT'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
         $filedata= array();
         foreach ($input as $key => $line) {
             // $filedata[] = explode("\t",$line);
-            $filedata[] = str_replace("|", "", explode("\t",$line)) ;
+            $filedata[] = str_replace("|", "", explode("\t",$line));
             // var_dump($filedata[$key][3]);
             
             $pleno = new Actaspleno;
@@ -60,12 +60,12 @@ class HomeController extends Controller
         /************************************************************
          * Carga los datos de actas de comisiones desde archivo txt
         ************************************************************/
-        $input = file(storage_path('ACT_COMI.txt'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $input = file(storage_path('ACT_COMI.TXT'), FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
         $filedata= array();
         foreach ($input as $key => $line) {
             // $filedata[] = explode("\t",$line);
-            $filedata[] = str_replace("|", "", explode("\t",$line)) ;
+            $filedata[] = str_replace("|", "", explode("\t",$line));
             // dd($filedata[$key]);
             
             $comis = new Actascomi;
