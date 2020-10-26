@@ -33,6 +33,9 @@ class HomeController extends Controller
         // limpia la tabla registros
         DB::table('actasplenos')->truncate();
         DB::table('actascomis')->truncate();
+        
+        DB::table('actasplenos')->truncate();
+        DB::table('actascomis')->truncate();
 
         /********************************************************
          * Carga los datos de actas del pleno desde archivo txt
